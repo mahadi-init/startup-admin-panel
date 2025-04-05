@@ -1,12 +1,19 @@
-import type React from "react"
-import { ErrorBoundary } from "@/components/error-boundary"
-import { Meta } from "@/components/meta"
-import "./globals.css"
+import "./globals.css";
+import type React from "react";
+import { Meta } from "@/components/meta";
+import { ErrorBoundary } from "@/components/error-boundary";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Admin Panel",
+  icons: ["/favicon.png"],
+  description: "Admin panel for startup",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -19,13 +26,5 @@ export default function RootLayout({
         <ErrorBoundary>{children}</ErrorBoundary>
       </body>
     </html>
-  )
+  );
 }
-
-
-
-import './globals.css'
-
-export const metadata = {
-      generator: 'v0.dev'
-    };
