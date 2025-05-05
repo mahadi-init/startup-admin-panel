@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id        String    @id @unique @default(uuid())
+  name      String
+  email     String    @unique
+  phone     String    @unique
+  dob       DateTime
+  addresses address[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model address {
+  id           String @id @unique @default(uuid())
+  city         String
+  region_state String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  users   users?  @relation(fields: [usersId], references: [id])
+  usersId String?
+}
+
+model admins {
+  id       String @id @unique @default(uuid())
+  name     String
+  phone    String
+  password String
+  role     String @default("ADMIN")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model products {
+  id                  String     @id @unique @default(uuid())
+  name                String
+  category            categories @relation(fields: [categoriesId], references: [id])
+  price               Int
+  discount_percentage Int?       @default(0)
+  rating              Float?
+  sold                Int?       @default(0)
+  model               String?
+  quantity            Int        @default(0)
+  status              String     @default("IN_STOCK")
+  images              Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  categoriesId String
+}
+
+model categories {
+  id   String  @id @unique @default(uuid())
+  name String
+  img  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  products products[]
+}
