@@ -37,7 +37,7 @@ export default async function LoginPage() {
         (await cookies()).set("auth-token", token);
       }
 
-      redirect("/dashboard");
+      redirect("/");
     }
   };
 
