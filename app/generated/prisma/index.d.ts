@@ -4730,13 +4730,13 @@ export namespace Prisma {
     id: string
     name: string
     price: number
-    discount_percentage: number | null
-    rating: number | null
-    sold: number | null
+    discount_percentage: number
+    rating: number
+    sold: number
     model: string | null
     quantity: number
     status: string
-    images: JsonValue
+    images: string[]
     createdAt: Date
     updatedAt: Date
     categoriesId: string
@@ -4848,13 +4848,13 @@ export namespace Prisma {
       id: string
       name: string
       price: number
-      discount_percentage: number | null
-      rating: number | null
-      sold: number | null
+      discount_percentage: number
+      rating: number
+      sold: number
       model: string | null
       quantity: number
       status: string
-      images: Prisma.JsonValue
+      images: string[]
       createdAt: Date
       updatedAt: Date
       categoriesId: string
@@ -5291,7 +5291,7 @@ export namespace Prisma {
     readonly model: FieldRef<"products", 'String'>
     readonly quantity: FieldRef<"products", 'Int'>
     readonly status: FieldRef<"products", 'String'>
-    readonly images: FieldRef<"products", 'Json'>
+    readonly images: FieldRef<"products", 'String[]'>
     readonly createdAt: FieldRef<"products", 'DateTime'>
     readonly updatedAt: FieldRef<"products", 'DateTime'>
     readonly categoriesId: FieldRef<"products", 'String'>
@@ -6869,13 +6869,6 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const JsonNullValueInput: {
-    JsonNull: typeof JsonNull
-  };
-
-  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
-
-
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -6890,15 +6883,6 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-  export const JsonNullValueFilter: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull,
-    AnyNull: typeof AnyNull
-  };
-
-  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -6959,20 +6943,6 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
   /**
    * Deep Input Types
@@ -7173,13 +7143,13 @@ export namespace Prisma {
     id?: StringFilter<"products"> | string
     name?: StringFilter<"products"> | string
     price?: IntFilter<"products"> | number
-    discount_percentage?: IntNullableFilter<"products"> | number | null
-    rating?: FloatNullableFilter<"products"> | number | null
-    sold?: IntNullableFilter<"products"> | number | null
+    discount_percentage?: IntFilter<"products"> | number
+    rating?: FloatFilter<"products"> | number
+    sold?: IntFilter<"products"> | number
     model?: StringNullableFilter<"products"> | string | null
     quantity?: IntFilter<"products"> | number
     status?: StringFilter<"products"> | string
-    images?: JsonFilter<"products">
+    images?: StringNullableListFilter<"products">
     createdAt?: DateTimeFilter<"products"> | Date | string
     updatedAt?: DateTimeFilter<"products"> | Date | string
     categoriesId?: StringFilter<"products"> | string
@@ -7190,9 +7160,9 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     price?: SortOrder
-    discount_percentage?: SortOrderInput | SortOrder
-    rating?: SortOrderInput | SortOrder
-    sold?: SortOrderInput | SortOrder
+    discount_percentage?: SortOrder
+    rating?: SortOrder
+    sold?: SortOrder
     model?: SortOrderInput | SortOrder
     quantity?: SortOrder
     status?: SortOrder
@@ -7210,13 +7180,13 @@ export namespace Prisma {
     NOT?: productsWhereInput | productsWhereInput[]
     name?: StringFilter<"products"> | string
     price?: IntFilter<"products"> | number
-    discount_percentage?: IntNullableFilter<"products"> | number | null
-    rating?: FloatNullableFilter<"products"> | number | null
-    sold?: IntNullableFilter<"products"> | number | null
+    discount_percentage?: IntFilter<"products"> | number
+    rating?: FloatFilter<"products"> | number
+    sold?: IntFilter<"products"> | number
     model?: StringNullableFilter<"products"> | string | null
     quantity?: IntFilter<"products"> | number
     status?: StringFilter<"products"> | string
-    images?: JsonFilter<"products">
+    images?: StringNullableListFilter<"products">
     createdAt?: DateTimeFilter<"products"> | Date | string
     updatedAt?: DateTimeFilter<"products"> | Date | string
     categoriesId?: StringFilter<"products"> | string
@@ -7227,9 +7197,9 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     price?: SortOrder
-    discount_percentage?: SortOrderInput | SortOrder
-    rating?: SortOrderInput | SortOrder
-    sold?: SortOrderInput | SortOrder
+    discount_percentage?: SortOrder
+    rating?: SortOrder
+    sold?: SortOrder
     model?: SortOrderInput | SortOrder
     quantity?: SortOrder
     status?: SortOrder
@@ -7251,13 +7221,13 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"products"> | string
     name?: StringWithAggregatesFilter<"products"> | string
     price?: IntWithAggregatesFilter<"products"> | number
-    discount_percentage?: IntNullableWithAggregatesFilter<"products"> | number | null
-    rating?: FloatNullableWithAggregatesFilter<"products"> | number | null
-    sold?: IntNullableWithAggregatesFilter<"products"> | number | null
+    discount_percentage?: IntWithAggregatesFilter<"products"> | number
+    rating?: FloatWithAggregatesFilter<"products"> | number
+    sold?: IntWithAggregatesFilter<"products"> | number
     model?: StringNullableWithAggregatesFilter<"products"> | string | null
     quantity?: IntWithAggregatesFilter<"products"> | number
     status?: StringWithAggregatesFilter<"products"> | string
-    images?: JsonWithAggregatesFilter<"products">
+    images?: StringNullableListFilter<"products">
     createdAt?: DateTimeWithAggregatesFilter<"products"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"products"> | Date | string
     categoriesId?: StringWithAggregatesFilter<"products"> | string
@@ -7528,13 +7498,13 @@ export namespace Prisma {
     id?: string
     name: string
     price: number
-    discount_percentage?: number | null
-    rating?: number | null
-    sold?: number | null
+    discount_percentage?: number
+    rating?: number
+    sold?: number
     model?: string | null
     quantity?: number
     status?: string
-    images: JsonNullValueInput | InputJsonValue
+    images?: productsCreateimagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     category: categoriesCreateNestedOneWithoutProductsInput
@@ -7544,13 +7514,13 @@ export namespace Prisma {
     id?: string
     name: string
     price: number
-    discount_percentage?: number | null
-    rating?: number | null
-    sold?: number | null
+    discount_percentage?: number
+    rating?: number
+    sold?: number
     model?: string | null
     quantity?: number
     status?: string
-    images: JsonNullValueInput | InputJsonValue
+    images?: productsCreateimagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     categoriesId: string
@@ -7560,13 +7530,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
-    rating?: NullableFloatFieldUpdateOperationsInput | number | null
-    sold?: NullableIntFieldUpdateOperationsInput | number | null
+    discount_percentage?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
+    sold?: IntFieldUpdateOperationsInput | number
     model?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    images?: JsonNullValueInput | InputJsonValue
+    images?: productsUpdateimagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: categoriesUpdateOneRequiredWithoutProductsNestedInput
@@ -7576,13 +7546,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
-    rating?: NullableFloatFieldUpdateOperationsInput | number | null
-    sold?: NullableIntFieldUpdateOperationsInput | number | null
+    discount_percentage?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
+    sold?: IntFieldUpdateOperationsInput | number
     model?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    images?: JsonNullValueInput | InputJsonValue
+    images?: productsUpdateimagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoriesId?: StringFieldUpdateOperationsInput | string
@@ -7592,13 +7562,13 @@ export namespace Prisma {
     id?: string
     name: string
     price: number
-    discount_percentage?: number | null
-    rating?: number | null
-    sold?: number | null
+    discount_percentage?: number
+    rating?: number
+    sold?: number
     model?: string | null
     quantity?: number
     status?: string
-    images: JsonNullValueInput | InputJsonValue
+    images?: productsCreateimagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     categoriesId: string
@@ -7608,13 +7578,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
-    rating?: NullableFloatFieldUpdateOperationsInput | number | null
-    sold?: NullableIntFieldUpdateOperationsInput | number | null
+    discount_percentage?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
+    sold?: IntFieldUpdateOperationsInput | number
     model?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    images?: JsonNullValueInput | InputJsonValue
+    images?: productsUpdateimagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7623,13 +7593,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
-    rating?: NullableFloatFieldUpdateOperationsInput | number | null
-    sold?: NullableIntFieldUpdateOperationsInput | number | null
+    discount_percentage?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
+    sold?: IntFieldUpdateOperationsInput | number
     model?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    images?: JsonNullValueInput | InputJsonValue
+    images?: productsUpdateimagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoriesId?: StringFieldUpdateOperationsInput | string
@@ -7904,49 +7874,23 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type FloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
   }
 
   export type CategoriesScalarRelationFilter = {
@@ -8032,62 +7976,20 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
-  }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type ProductsListRelationFilter = {
@@ -8194,6 +8096,10 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type productsCreateimagesInput = {
+    set: string[]
+  }
+
   export type categoriesCreateNestedOneWithoutProductsInput = {
     create?: XOR<categoriesCreateWithoutProductsInput, categoriesUncheckedCreateWithoutProductsInput>
     connectOrCreate?: categoriesCreateOrConnectWithoutProductsInput
@@ -8208,20 +8114,17 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
   }
 
-  export type NullableFloatFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type productsUpdateimagesInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type categoriesUpdateOneRequiredWithoutProductsNestedInput = {
@@ -8383,15 +8286,15 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -8410,7 +8313,7 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type NestedFloatFilter<$PrismaModel = never> = {
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
     notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -8418,62 +8321,12 @@ export namespace Prisma {
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
-  }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type addressCreateWithoutUsersInput = {
@@ -8638,13 +8491,13 @@ export namespace Prisma {
     id?: string
     name: string
     price: number
-    discount_percentage?: number | null
-    rating?: number | null
-    sold?: number | null
+    discount_percentage?: number
+    rating?: number
+    sold?: number
     model?: string | null
     quantity?: number
     status?: string
-    images: JsonNullValueInput | InputJsonValue
+    images?: productsCreateimagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8653,13 +8506,13 @@ export namespace Prisma {
     id?: string
     name: string
     price: number
-    discount_percentage?: number | null
-    rating?: number | null
-    sold?: number | null
+    discount_percentage?: number
+    rating?: number
+    sold?: number
     model?: string | null
     quantity?: number
     status?: string
-    images: JsonNullValueInput | InputJsonValue
+    images?: productsCreateimagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8697,13 +8550,13 @@ export namespace Prisma {
     id?: StringFilter<"products"> | string
     name?: StringFilter<"products"> | string
     price?: IntFilter<"products"> | number
-    discount_percentage?: IntNullableFilter<"products"> | number | null
-    rating?: FloatNullableFilter<"products"> | number | null
-    sold?: IntNullableFilter<"products"> | number | null
+    discount_percentage?: IntFilter<"products"> | number
+    rating?: FloatFilter<"products"> | number
+    sold?: IntFilter<"products"> | number
     model?: StringNullableFilter<"products"> | string | null
     quantity?: IntFilter<"products"> | number
     status?: StringFilter<"products"> | string
-    images?: JsonFilter<"products">
+    images?: StringNullableListFilter<"products">
     createdAt?: DateTimeFilter<"products"> | Date | string
     updatedAt?: DateTimeFilter<"products"> | Date | string
     categoriesId?: StringFilter<"products"> | string
@@ -8745,13 +8598,13 @@ export namespace Prisma {
     id?: string
     name: string
     price: number
-    discount_percentage?: number | null
-    rating?: number | null
-    sold?: number | null
+    discount_percentage?: number
+    rating?: number
+    sold?: number
     model?: string | null
     quantity?: number
     status?: string
-    images: JsonNullValueInput | InputJsonValue
+    images?: productsCreateimagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8760,13 +8613,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
-    rating?: NullableFloatFieldUpdateOperationsInput | number | null
-    sold?: NullableIntFieldUpdateOperationsInput | number | null
+    discount_percentage?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
+    sold?: IntFieldUpdateOperationsInput | number
     model?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    images?: JsonNullValueInput | InputJsonValue
+    images?: productsUpdateimagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8775,13 +8628,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
-    rating?: NullableFloatFieldUpdateOperationsInput | number | null
-    sold?: NullableIntFieldUpdateOperationsInput | number | null
+    discount_percentage?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
+    sold?: IntFieldUpdateOperationsInput | number
     model?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    images?: JsonNullValueInput | InputJsonValue
+    images?: productsUpdateimagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8790,13 +8643,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
-    rating?: NullableFloatFieldUpdateOperationsInput | number | null
-    sold?: NullableIntFieldUpdateOperationsInput | number | null
+    discount_percentage?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
+    sold?: IntFieldUpdateOperationsInput | number
     model?: NullableStringFieldUpdateOperationsInput | string | null
     quantity?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    images?: JsonNullValueInput | InputJsonValue
+    images?: productsUpdateimagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

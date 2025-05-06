@@ -1,30 +1,18 @@
-"use client"
-
-import { Bell, Menu, Search, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { useSidebar } from "@/components/ui/sidebar"
-import { UserNav } from "@/components/user-nav"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+"use client";
+import { Bell, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { UserNav } from "@/components/user-nav";
+import { useSidebar } from "@/components/ui/sidebar";
 
 export function DashboardHeader() {
-  const { state, toggleSidebar } = useSidebar()
-  const isOpen = state === "expanded"
+  const { state } = useSidebar();
+  const isOpen = state === "expanded";
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="outline" size="icon" onClick={toggleSidebar} className="mr-2">
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              <span className="sr-only">{isOpen ? "Close Sidebar" : "Open Sidebar"}</span>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>{isOpen ? "Close Sidebar" : "Open Sidebar"}</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-
+    <header
+      className={`sticky ${isOpen ? "ml-64" : "ml-8"} top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6`}
+    >
       <div className="flex flex-1 items-center gap-4 md:gap-8">
         <form className="hidden flex-1 md:block md:max-w-sm lg:max-w-md">
           <div className="relative">
@@ -45,6 +33,5 @@ export function DashboardHeader() {
         </div>
       </div>
     </header>
-  )
+  );
 }
-

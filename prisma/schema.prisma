@@ -54,13 +54,13 @@ model products {
   name                String
   category            categories @relation(fields: [categoriesId], references: [id])
   price               Int
-  discount_percentage Int?       @default(0)
-  rating              Float?
-  sold                Int?       @default(0)
+  discount_percentage Int        @default(0)
+  rating              Float      @default(0)
+  sold                Int        @default(0)
   model               String?
   quantity            Int        @default(0)
   status              String     @default("IN_STOCK")
-  images              Json
+  images              String[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
