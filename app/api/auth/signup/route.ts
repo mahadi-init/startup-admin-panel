@@ -25,10 +25,13 @@ export async function POST(request: Request) {
     });
 
     if (userExists) {
-      return NextResponse.json({
-        success: false,
-        data: "User already exists",
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          data: "User already exists",
+        },
+        { status: 400 },
+      );
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10);
@@ -37,6 +40,6 @@ export async function POST(request: Request) {
     const user = await prisma.user.create({ data: modifiedData });
     return NextResponse.json({ success: true, data: user });
   } catch (error) {
-    return NextResponse.json({ success: false, error });
+    return NextResponse.json({ success: false, error }, { status: 500 });
   }
 }

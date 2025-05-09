@@ -21,19 +21,25 @@ export async function POST(request: Request) {
     });
 
     if (!user) {
-      return NextResponse.json({
-        success: false,
-        error: "User not found",
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          error: "User not found",
+        },
+        { status: 401 },
+      );
     }
 
     const isPasswordValid = await bcrypt.compare(data.password, user.password);
 
     if (!isPasswordValid) {
-      return NextResponse.json({
-        success: false,
-        error: "Invalid credentials",
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Invalid credentials",
+        },
+        { status: 401 },
+      );
     }
 
     const token = await createJWT({
@@ -42,6 +48,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, data: user, token });
   } catch (error) {
-    return NextResponse.json({ success: false, error });
+    return NextResponse.json({ success: false, error }, { status: 500 });
   }
 }
