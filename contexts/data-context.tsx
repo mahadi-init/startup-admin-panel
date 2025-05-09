@@ -1,7 +1,15 @@
 "use client";
 
 import type React from "react";
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  use,
+  useContext,
+  useState,
+  type ReactNode,
+} from "react";
 
 // Define types for our data
 export type User = {
@@ -61,12 +69,12 @@ export type ValidationErrors = {
 type DataContextType = {
   // Users
   users: User[];
-  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
+  setUsers: React.Dispatch<SetStateAction<User[]>>;
   filteredUsers: User[];
   userSearch: string;
-  setUserSearch: React.Dispatch<React.SetStateAction<string>>;
+  setUserSearch: Dispatch<SetStateAction<string>>;
   userFilter: string;
-  setUserFilter: React.Dispatch<React.SetStateAction<string>>;
+  setUserFilter: Dispatch<SetStateAction<string>>;
   addUser: (user: Omit<User, "id">) => {
     success: boolean;
     errors?: ValidationErrors;
@@ -76,12 +84,12 @@ type DataContextType = {
 
   // Products
   products: Product[];
-  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  setProducts: Dispatch<SetStateAction<Product[]>>;
   filteredProducts: Product[];
   productSearch: string;
-  setProductSearch: React.Dispatch<React.SetStateAction<string>>;
+  setProductSearch: Dispatch<SetStateAction<string>>;
   productFilter: string;
-  setProductFilter: React.Dispatch<React.SetStateAction<string>>;
+  setProductFilter: Dispatch<SetStateAction<string>>;
   addProduct: (product: Omit<Product, "id">) => {
     success: boolean;
     errors?: ValidationErrors;
@@ -94,24 +102,24 @@ type DataContextType = {
 
   // Orders
   orders: Order[];
-  setOrders: React.Dispatch<React.SetStateAction<Order[]>>;
+  setOrders: Dispatch<SetStateAction<Order[]>>;
   filteredOrders: Order[];
   orderSearch: string;
-  setOrderSearch: React.Dispatch<React.SetStateAction<string>>;
+  setOrderSearch: Dispatch<SetStateAction<string>>;
   orderFilter: string;
-  setOrderFilter: React.Dispatch<React.SetStateAction<string>>;
+  setOrderFilter: Dispatch<SetStateAction<string>>;
   orderSort: string;
-  setOrderSort: React.Dispatch<React.SetStateAction<string>>;
+  setOrderSort: Dispatch<SetStateAction<string>>;
   updateOrderStatus: (id: string, status: string) => void;
 
   // Inventory
   inventory: InventoryItem[];
-  setInventory: React.Dispatch<React.SetStateAction<InventoryItem[]>>;
+  setInventory: Dispatch<SetStateAction<InventoryItem[]>>;
   filteredInventory: InventoryItem[];
   inventorySearch: string;
-  setInventorySearch: React.Dispatch<React.SetStateAction<string>>;
+  setInventorySearch: Dispatch<SetStateAction<string>>;
   inventoryFilter: string;
-  setInventoryFilter: React.Dispatch<React.SetStateAction<string>>;
+  setInventoryFilter: Dispatch<SetStateAction<string>>;
   updateInventoryItem: (item: InventoryItem) => {
     success: boolean;
     errors?: ValidationErrors;
@@ -119,7 +127,7 @@ type DataContextType = {
 
   // Loading states
   isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 };
 
 // Create the context
@@ -134,34 +142,6 @@ const sampleUsers: User[] = [
     role: "Admin",
     status: "Active",
   },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane@example.com",
-    role: "Editor",
-    status: "Active",
-  },
-  {
-    id: 3,
-    name: "Robert Johnson",
-    email: "robert@example.com",
-    role: "Viewer",
-    status: "Inactive",
-  },
-  {
-    id: 4,
-    name: "Emily Davis",
-    email: "emily@example.com",
-    role: "Editor",
-    status: "Active",
-  },
-  {
-    id: 5,
-    name: "Michael Wilson",
-    email: "michael@example.com",
-    role: "Viewer",
-    status: "Active",
-  },
 ];
 
 const sampleProducts: Product[] = [
@@ -174,101 +154,9 @@ const sampleProducts: Product[] = [
     status: "In Stock",
     description: "Comfortable ergonomic office chair with lumbar support",
   },
-  {
-    id: 2,
-    name: "Wireless Headphones",
-    category: "Electronics",
-    price: 149.99,
-    stock: 28,
-    status: "In Stock",
-    description:
-      "Noise-cancelling wireless headphones with 30-hour battery life",
-  },
-  {
-    id: 3,
-    name: "Mechanical Keyboard",
-    category: "Electronics",
-    price: 89.99,
-    stock: 0,
-    status: "Out of Stock",
-    description: "Mechanical gaming keyboard with RGB lighting",
-  },
-  {
-    id: 4,
-    name: "Standing Desk",
-    category: "Furniture",
-    price: 399.99,
-    stock: 12,
-    status: "In Stock",
-    description: "Adjustable height standing desk with electric motor",
-  },
-  {
-    id: 5,
-    name: "Laptop Backpack",
-    category: "Accessories",
-    price: 59.99,
-    stock: 34,
-    status: "In Stock",
-    description: "Water-resistant laptop backpack with multiple compartments",
-  },
 ];
 
 const sampleOrders: Order[] = [
-  {
-    id: "#ORD-001",
-    customer: "John Doe",
-    date: "2024-03-15",
-    total: 299.99,
-    status: "Delivered",
-    items: [
-      {
-        id: 1,
-        productId: 1,
-        productName: "Ergonomic Chair",
-        quantity: 1,
-        price: 299.99,
-      },
-    ],
-    address: "123 Main St, Anytown, USA",
-    paymentMethod: "Credit Card",
-    notes: "Leave at front door",
-  },
-  {
-    id: "#ORD-002",
-    customer: "Jane Smith",
-    date: "2024-03-18",
-    total: 149.99,
-    status: "Processing",
-    items: [
-      {
-        id: 1,
-        productId: 2,
-        productName: "Wireless Headphones",
-        quantity: 1,
-        price: 149.99,
-      },
-    ],
-    address: "456 Oak Ave, Somewhere, USA",
-    paymentMethod: "PayPal",
-  },
-  {
-    id: "#ORD-003",
-    customer: "Robert Johnson",
-    date: "2024-03-20",
-    total: 89.99,
-    status: "Shipped",
-    items: [
-      {
-        id: 1,
-        productId: 3,
-        productName: "Mechanical Keyboard",
-        quantity: 1,
-        price: 89.99,
-      },
-    ],
-    address: "789 Pine Rd, Nowhere, USA",
-    paymentMethod: "Credit Card",
-  },
   {
     id: "#ORD-004",
     customer: "Emily Davis",
@@ -287,51 +175,9 @@ const sampleOrders: Order[] = [
     address: "101 Elm St, Elsewhere, USA",
     paymentMethod: "Bank Transfer",
   },
-  {
-    id: "#ORD-005",
-    customer: "Michael Wilson",
-    date: "2024-03-24",
-    total: 59.99,
-    status: "Delivered",
-    items: [
-      {
-        id: 1,
-        productId: 5,
-        productName: "Laptop Backpack",
-        quantity: 1,
-        price: 59.99,
-      },
-    ],
-    address: "202 Cedar Ln, Anywhere, USA",
-    paymentMethod: "Credit Card",
-  },
 ];
 
 const sampleInventory: InventoryItem[] = [
-  {
-    id: 1,
-    name: "Ergonomic Chair",
-    sku: "CHAIR-001",
-    stock: 45,
-    reorderLevel: 10,
-    stockStatus: 82,
-  },
-  {
-    id: 2,
-    name: "Wireless Headphones",
-    sku: "AUDIO-002",
-    stock: 28,
-    reorderLevel: 15,
-    stockStatus: 65,
-  },
-  {
-    id: 3,
-    name: "Mechanical Keyboard",
-    sku: "KB-003",
-    stock: 3,
-    reorderLevel: 10,
-    stockStatus: 15,
-  },
   {
     id: 4,
     name: "Standing Desk",
@@ -649,7 +495,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
 // Custom hook to use the data context
 export function useData() {
-  const context = useContext(DataContext);
+  const context = use(DataContext);
   if (context === undefined) {
     throw new Error("useData must be used within a DataProvider");
   }

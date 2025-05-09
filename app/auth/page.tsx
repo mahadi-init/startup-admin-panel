@@ -21,7 +21,7 @@ export default async function LoginPage() {
     const phone = formData.get("phone") as string;
     const password = formData.get("password") as string;
 
-    const admin = await prisma.admins.findFirst({
+    const admin = await prisma.admin.findFirst({
       where: { phone: phone, password: password },
     });
 

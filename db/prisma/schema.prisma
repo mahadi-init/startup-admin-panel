@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../db/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @unique @default(uuid())
+  name      String
+  email     String    @unique
+  phone     String    @unique
+  password  String
+  dob       String?
+  addresses Address[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  reviews   Review[]
+}
+
+model Address {
+  id           String @id @unique @default(uuid())
+  city         String
+  region_state String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  users  User?   @relation(fields: [userId], references: [id])
+  userId String?
+}
+
+model Admin {
+  id       String @id @unique @default(uuid())
+  name     String
+  phone    String
+  password String
+  role     String @default("ADMIN")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Product {
+  id                  String   @id @unique @default(uuid())
+  name                String
+  category            Category @relation(fields: [categoriesId], references: [id])
+  price               Int?
+  discount_percentage Int?
+  rating              Float?
+  sold                Int      @default(0)
+  model               String?
+  quantity            Int      @default(0)
+  status              String   @default("In Stock")
+  images              String[]
+  videos              String[]
+  reviews             Review[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  categoriesId String
+}
+
+model Review {
+  id      String   @id @unique @default(uuid())
+  user    User     @relation(fields: [usersId], references: [id])
+  comment String
+  rating  Float?
+  images  String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  products   Product? @relation(fields: [productsId], references: [id])
+  productsId String?
+  usersId    String
+}
+
+model Category {
+  id   String  @id @unique @default(uuid())
+  name String
+  img  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  products Product[]
+}

@@ -1,12 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
+  output   = "../db/prisma"
 }
 
 datasource db {
@@ -14,19 +8,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
+model User {
   id        String    @id @unique @default(uuid())
   name      String
   email     String    @unique
   phone     String    @unique
-  dob       DateTime
-  addresses address[]
+  password  String
+  dob       String?
+  addresses Address[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
+  reviews   Review[]
 }
 
-model address {
+model Address {
   id           String @id @unique @default(uuid())
   city         String
   region_state String
@@ -34,11 +30,11 @@ model address {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
-  users   users?  @relation(fields: [usersId], references: [id])
-  usersId String?
+  users  User?   @relation(fields: [userId], references: [id])
+  userId String?
 }
 
-model admins {
+model Admin {
   id       String @id @unique @default(uuid())
   name     String
   phone    String
@@ -49,18 +45,20 @@ model admins {
   updatedAt DateTime @default(now()) @updatedAt
 }
 
-model products {
-  id                  String     @id @unique @default(uuid())
+model Product {
+  id                  String   @id @unique @default(uuid())
   name                String
-  category            categories @relation(fields: [categoriesId], references: [id])
-  price               Int
-  discount_percentage Int        @default(0)
-  rating              Float      @default(0)
-  sold                Int        @default(0)
+  category            Category @relation(fields: [categoriesId], references: [id])
+  price               Int?
+  discount_percentage Int?
+  rating              Float?
+  sold                Int      @default(0)
   model               String?
-  quantity            Int        @default(0)
-  status              String     @default("IN_STOCK")
+  quantity            Int      @default(0)
+  status              String   @default("In Stock")
   images              String[]
+  videos              String[]
+  reviews             Review[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
@@ -68,7 +66,22 @@ model products {
   categoriesId String
 }
 
-model categories {
+model Review {
+  id      String   @id @unique @default(uuid())
+  user    User     @relation(fields: [usersId], references: [id])
+  comment String
+  rating  Float?
+  images  String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  products   Product? @relation(fields: [productsId], references: [id])
+  productsId String?
+  usersId    String
+}
+
+model Category {
   id   String  @id @unique @default(uuid())
   name String
   img  String?
@@ -76,5 +89,5 @@ model categories {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
-  products products[]
+  products Product[]
 }

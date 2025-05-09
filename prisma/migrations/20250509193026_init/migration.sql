@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "Product" ALTER COLUMN "price" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "dob" DROP NOT NULL,
+ALTER COLUMN "dob" SET DATA TYPE TEXT;
