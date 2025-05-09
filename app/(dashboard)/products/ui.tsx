@@ -25,30 +25,30 @@ import {
 import type React from "react";
 import Image from "next/image";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
+import { Category } from "@/db/prisma";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { UiDialog } from "@/components/ui-dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus, Search, Upload, Filter } from "lucide-react";
-import { Category } from "@/app/generated/prisma";
 
 type ProductDataType = {
-  name: string;
   category: {
-    name: string;
     id: string;
+    name: string;
     img: string | null;
   };
-  id: string;
-  status: string;
-  price: number;
   model: string | null;
+  id: string;
+  name: string;
+  price: number | null;
   discount_percentage: number | null;
   rating: number | null;
   sold: number;
   quantity: number;
+  status: string;
   images: string[];
 };
 
@@ -276,7 +276,7 @@ export default function ProductsUI({
                       <TableCell className="hidden md:table-cell">
                         {product.category.name}
                       </TableCell>
-                      <TableCell>${product.price.toFixed(2)}</TableCell>
+                      <TableCell>${product.price?.toPrecision()}</TableCell>
                       <TableCell className="hidden md:table-cell">
                         {product.quantity - product?.sold}
                       </TableCell>
