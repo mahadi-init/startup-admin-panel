@@ -4704,6 +4704,7 @@ export namespace Prisma {
   export type ProductMinAggregateOutputType = {
     id: string | null
     name: string | null
+    slug: string | null
     price: number | null
     discount_percentage: number | null
     rating: number | null
@@ -4719,6 +4720,7 @@ export namespace Prisma {
   export type ProductMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    slug: string | null
     price: number | null
     discount_percentage: number | null
     rating: number | null
@@ -4734,6 +4736,7 @@ export namespace Prisma {
   export type ProductCountAggregateOutputType = {
     id: number
     name: number
+    slug: number
     price: number
     discount_percentage: number
     rating: number
@@ -4769,6 +4772,7 @@ export namespace Prisma {
   export type ProductMinAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     price?: true
     discount_percentage?: true
     rating?: true
@@ -4784,6 +4788,7 @@ export namespace Prisma {
   export type ProductMaxAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     price?: true
     discount_percentage?: true
     rating?: true
@@ -4799,6 +4804,7 @@ export namespace Prisma {
   export type ProductCountAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     price?: true
     discount_percentage?: true
     rating?: true
@@ -4903,6 +4909,7 @@ export namespace Prisma {
   export type ProductGroupByOutputType = {
     id: string
     name: string
+    slug: string
     price: number | null
     discount_percentage: number | null
     rating: number | null
@@ -4939,6 +4946,7 @@ export namespace Prisma {
   export type ProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     price?: boolean
     discount_percentage?: boolean
     rating?: boolean
@@ -4959,6 +4967,7 @@ export namespace Prisma {
   export type ProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     price?: boolean
     discount_percentage?: boolean
     rating?: boolean
@@ -4977,6 +4986,7 @@ export namespace Prisma {
   export type ProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     price?: boolean
     discount_percentage?: boolean
     rating?: boolean
@@ -4995,6 +5005,7 @@ export namespace Prisma {
   export type ProductSelectScalar = {
     id?: boolean
     name?: boolean
+    slug?: boolean
     price?: boolean
     discount_percentage?: boolean
     rating?: boolean
@@ -5009,7 +5020,7 @@ export namespace Prisma {
     categoriesId?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "discount_percentage" | "rating" | "sold" | "model" | "quantity" | "status" | "images" | "videos" | "createdAt" | "updatedAt" | "categoriesId", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "price" | "discount_percentage" | "rating" | "sold" | "model" | "quantity" | "status" | "images" | "videos" | "createdAt" | "updatedAt" | "categoriesId", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     reviews?: boolean | Product$reviewsArgs<ExtArgs>
@@ -5031,6 +5042,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
+      slug: string
       price: number | null
       discount_percentage: number | null
       rating: number | null
@@ -5470,6 +5482,7 @@ export namespace Prisma {
   interface ProductFieldRefs {
     readonly id: FieldRef<"Product", 'String'>
     readonly name: FieldRef<"Product", 'String'>
+    readonly slug: FieldRef<"Product", 'String'>
     readonly price: FieldRef<"Product", 'Int'>
     readonly discount_percentage: FieldRef<"Product", 'Int'>
     readonly rating: FieldRef<"Product", 'Float'>
@@ -8200,6 +8213,7 @@ export namespace Prisma {
   export const ProductScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    slug: 'slug',
     price: 'price',
     discount_percentage: 'discount_percentage',
     rating: 'rating',
@@ -8531,6 +8545,7 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     id?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
+    slug?: StringFilter<"Product"> | string
     price?: IntNullableFilter<"Product"> | number | null
     discount_percentage?: IntNullableFilter<"Product"> | number | null
     rating?: FloatNullableFilter<"Product"> | number | null
@@ -8550,6 +8565,7 @@ export namespace Prisma {
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     price?: SortOrderInput | SortOrder
     discount_percentage?: SortOrderInput | SortOrder
     rating?: SortOrderInput | SortOrder
@@ -8568,6 +8584,7 @@ export namespace Prisma {
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    slug?: string
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
@@ -8586,11 +8603,12 @@ export namespace Prisma {
     categoriesId?: StringFilter<"Product"> | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     reviews?: ReviewListRelationFilter
-  }, "id" | "id">
+  }, "id" | "id" | "slug">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     price?: SortOrderInput | SortOrder
     discount_percentage?: SortOrderInput | SortOrder
     rating?: SortOrderInput | SortOrder
@@ -8616,6 +8634,7 @@ export namespace Prisma {
     NOT?: ProductScalarWhereWithAggregatesInput | ProductScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Product"> | string
     name?: StringWithAggregatesFilter<"Product"> | string
+    slug?: StringWithAggregatesFilter<"Product"> | string
     price?: IntNullableWithAggregatesFilter<"Product"> | number | null
     discount_percentage?: IntNullableWithAggregatesFilter<"Product"> | number | null
     rating?: FloatNullableWithAggregatesFilter<"Product"> | number | null
@@ -8980,6 +8999,7 @@ export namespace Prisma {
   export type ProductCreateInput = {
     id?: string
     name: string
+    slug: string
     price?: number | null
     discount_percentage?: number | null
     rating?: number | null
@@ -8998,6 +9018,7 @@ export namespace Prisma {
   export type ProductUncheckedCreateInput = {
     id?: string
     name: string
+    slug: string
     price?: number | null
     discount_percentage?: number | null
     rating?: number | null
@@ -9016,6 +9037,7 @@ export namespace Prisma {
   export type ProductUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     price?: NullableIntFieldUpdateOperationsInput | number | null
     discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9034,6 +9056,7 @@ export namespace Prisma {
   export type ProductUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     price?: NullableIntFieldUpdateOperationsInput | number | null
     discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9052,6 +9075,7 @@ export namespace Prisma {
   export type ProductCreateManyInput = {
     id?: string
     name: string
+    slug: string
     price?: number | null
     discount_percentage?: number | null
     rating?: number | null
@@ -9069,6 +9093,7 @@ export namespace Prisma {
   export type ProductUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     price?: NullableIntFieldUpdateOperationsInput | number | null
     discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9085,6 +9110,7 @@ export namespace Prisma {
   export type ProductUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     price?: NullableIntFieldUpdateOperationsInput | number | null
     discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9494,6 +9520,7 @@ export namespace Prisma {
   export type ProductCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     price?: SortOrder
     discount_percentage?: SortOrder
     rating?: SortOrder
@@ -9519,6 +9546,7 @@ export namespace Prisma {
   export type ProductMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     price?: SortOrder
     discount_percentage?: SortOrder
     rating?: SortOrder
@@ -9534,6 +9562,7 @@ export namespace Prisma {
   export type ProductMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     price?: SortOrder
     discount_percentage?: SortOrder
     rating?: SortOrder
@@ -10459,6 +10488,7 @@ export namespace Prisma {
   export type ProductCreateWithoutReviewsInput = {
     id?: string
     name: string
+    slug: string
     price?: number | null
     discount_percentage?: number | null
     rating?: number | null
@@ -10476,6 +10506,7 @@ export namespace Prisma {
   export type ProductUncheckedCreateWithoutReviewsInput = {
     id?: string
     name: string
+    slug: string
     price?: number | null
     discount_percentage?: number | null
     rating?: number | null
@@ -10544,6 +10575,7 @@ export namespace Prisma {
   export type ProductUpdateWithoutReviewsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     price?: NullableIntFieldUpdateOperationsInput | number | null
     discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -10561,6 +10593,7 @@ export namespace Prisma {
   export type ProductUncheckedUpdateWithoutReviewsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     price?: NullableIntFieldUpdateOperationsInput | number | null
     discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -10578,6 +10611,7 @@ export namespace Prisma {
   export type ProductCreateWithoutCategoryInput = {
     id?: string
     name: string
+    slug: string
     price?: number | null
     discount_percentage?: number | null
     rating?: number | null
@@ -10595,6 +10629,7 @@ export namespace Prisma {
   export type ProductUncheckedCreateWithoutCategoryInput = {
     id?: string
     name: string
+    slug: string
     price?: number | null
     discount_percentage?: number | null
     rating?: number | null
@@ -10641,6 +10676,7 @@ export namespace Prisma {
     NOT?: ProductScalarWhereInput | ProductScalarWhereInput[]
     id?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
+    slug?: StringFilter<"Product"> | string
     price?: IntNullableFilter<"Product"> | number | null
     discount_percentage?: IntNullableFilter<"Product"> | number | null
     rating?: FloatNullableFilter<"Product"> | number | null
@@ -10770,6 +10806,7 @@ export namespace Prisma {
   export type ProductCreateManyCategoryInput = {
     id?: string
     name: string
+    slug: string
     price?: number | null
     discount_percentage?: number | null
     rating?: number | null
@@ -10786,6 +10823,7 @@ export namespace Prisma {
   export type ProductUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     price?: NullableIntFieldUpdateOperationsInput | number | null
     discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -10803,6 +10841,7 @@ export namespace Prisma {
   export type ProductUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     price?: NullableIntFieldUpdateOperationsInput | number | null
     discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -10820,6 +10859,7 @@ export namespace Prisma {
   export type ProductUncheckedUpdateManyWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     price?: NullableIntFieldUpdateOperationsInput | number | null
     discount_percentage?: NullableIntFieldUpdateOperationsInput | number | null
     rating?: NullableFloatFieldUpdateOperationsInput | number | null

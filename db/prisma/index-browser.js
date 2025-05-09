@@ -153,6 +153,7 @@ exports.Prisma.AdminScalarFieldEnum = {
 exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  slug: 'slug',
   price: 'price',
   discount_percentage: 'discount_percentage',
   rating: 'rating',

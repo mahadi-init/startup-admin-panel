@@ -48,6 +48,7 @@ model Admin {
 model Product {
   id                  String   @id @unique @default(uuid())
   name                String
+  slug                String   @unique
   category            Category @relation(fields: [categoriesId], references: [id])
   price               Int?
   discount_percentage Int?

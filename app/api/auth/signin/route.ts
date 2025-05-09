@@ -1,8 +1,8 @@
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
 import { createJWT } from "@/utils/jwt";
+import { NextResponse } from "next/server";
 
 const SigninSchema = z.object({
   email: z.string().email(),
