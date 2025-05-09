@@ -1,4 +1,3 @@
-// lib/errorHandler.ts
 import {
   BadRequestError,
   UnauthorizedError,

@@ -2,6 +2,7 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { handleApiError } from "@/lib/error-handler";
 
 const SignupSchema = z.object({
   name: z.string(),
@@ -40,6 +41,6 @@ export async function POST(request: Request) {
     const user = await prisma.user.create({ data: modifiedData });
     return NextResponse.json({ success: true, data: user });
   } catch (error) {
-    return NextResponse.json({ success: false, error }, { status: 500 });
+    return handleApiError(error);
   }
 }

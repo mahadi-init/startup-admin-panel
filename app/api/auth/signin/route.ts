@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 import { createJWT } from "@/utils/jwt";
 import { NextResponse } from "next/server";
+import { handleApiError } from "@/lib/error-handler";
 
 const SigninSchema = z.object({
   email: z.string().email(),
@@ -48,6 +49,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, data: user, token });
   } catch (error) {
-    return NextResponse.json({ success: false, error }, { status: 500 });
+    return handleApiError(error);
   }
 }
