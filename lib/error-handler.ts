@@ -10,6 +10,7 @@ import {
   InternalServerError,
   ServiceUnavailableError,
 } from "./errors";
+import { z } from "zod";
 import { NextResponse } from "next/server";
 
 export function handleApiError(error: unknown) {
@@ -60,6 +61,10 @@ export function handleApiError(error: unknown) {
       { success: false, error: error.message },
       { status: 422 },
     );
+  }
+
+  if (error instanceof z.ZodError) {
+    return NextResponse.json({ success: false, error: error }, { status: 422 });
   }
 
   if (error instanceof TooManyRequestsError) {
