@@ -15,5 +15,5 @@ export default async function jwtAuth(request: Request) {
     throw new UnauthorizedError("Token is invalid");
   }
 
-  return payload as { userId: string; exp: number };
+  return payload as { sub: string; exp: number };
 }

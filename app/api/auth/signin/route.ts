@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 import { createJWT } from "@/utils/jwt";
 import { NextResponse } from "next/server";
 import { handleApiError } from "@/lib/error-handler";
+import { ConflictError, ForbiddenError, NotFoundError } from "@/lib/errors";
 
 const SigninSchema = z.object({
   email: z.string().email(),
@@ -22,30 +23,25 @@ export async function POST(request: Request) {
     });
 
     if (!user) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "User not found",
-        },
-        { status: 401 },
-      );
+      throw new NotFoundError("User not found");
+    }
+
+    if (!user.password) {
+      throw new ConflictError("Try using the Google login");
     }
 
     const isPasswordValid = await bcrypt.compare(data.password, user.password);
 
     if (!isPasswordValid) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Invalid credentials",
-        },
-        { status: 401 },
-      );
+      throw new ForbiddenError("Invalid credentials");
     }
 
     const token = await createJWT({
-      userId: user.id,
+      sub: user.id,
+      email: user.email,
     });
+
+    console.log("5");
 
     return NextResponse.json({ success: true, data: user, token });
   } catch (error) {

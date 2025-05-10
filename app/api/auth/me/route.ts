@@ -6,10 +6,10 @@ import { handleApiError } from "@/lib/error-handler";
 
 export async function GET(request: Request) {
   try {
-    const { userId } = await jwtAuth(request);
+    const { sub } = await jwtAuth(request);
 
     const user = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { id: sub },
     });
 
     if (!user) {

@@ -2,6 +2,7 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { ConflictError } from "@/lib/errors";
 import { handleApiError } from "@/lib/error-handler";
 
 const SignupSchema = z.object({
@@ -21,18 +22,12 @@ export async function POST(request: Request) {
 
     const userExists = await prisma.user.findFirst({
       where: {
-        OR: [{ email: email }, { phone: phone }],
+        email: email,
       },
     });
 
     if (userExists) {
-      return NextResponse.json(
-        {
-          success: false,
-          data: "User already exists",
-        },
-        { status: 400 },
-      );
+      throw new ConflictError("User already exists");
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10);
