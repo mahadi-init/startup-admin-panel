@@ -65,7 +65,57 @@ model Product {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
+  Order        Order?  @relation(fields: [orderId], references: [id])
+  orderId      String?
   categoriesId String
+}
+
+model Order {
+  id            String        @id @unique @default(uuid())
+  products      Product[]
+  subtotal      Int
+  delivery_cost Int
+  total         Int
+  status        String        @default("Pending") // Pending, Delivered, Cancelled, completed
+  last_message  String?
+  delivery      DeliveryInfo? @relation(fields: [deliveryInfoId], references: [id])
+  payment       PaymentInfo?  @relation(fields: [paymentInfoId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  usersId        String
+  deliveryInfoId String?
+  paymentInfoId  String?
+}
+
+model DeliveryInfo {
+  id           String   @id @unique @default(uuid())
+  name         String
+  phone        String
+  secondPhone  String?
+  city         String?
+  state        String?
+  zip          String?
+  full_address String?
+  method       String?
+  messages     String[]
+  expectedDate String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  Order     Order[]
+}
+
+model PaymentInfo {
+  id            String @id @unique @default(uuid())
+  paymentMethod String @default("Cash") // bkash
+  total_paid    Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  Order Order[]
 }
 
 model Review {
