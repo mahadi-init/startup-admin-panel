@@ -166,7 +166,46 @@ exports.Prisma.ProductScalarFieldEnum = {
   videos: 'videos',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  orderId: 'orderId',
   categoriesId: 'categoriesId'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  subtotal: 'subtotal',
+  delivery_cost: 'delivery_cost',
+  total: 'total',
+  status: 'status',
+  last_message: 'last_message',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  usersId: 'usersId',
+  deliveryInfoId: 'deliveryInfoId',
+  paymentInfoId: 'paymentInfoId'
+};
+
+exports.Prisma.DeliveryInfoScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  phone: 'phone',
+  secondPhone: 'secondPhone',
+  city: 'city',
+  state: 'state',
+  zip: 'zip',
+  full_address: 'full_address',
+  method: 'method',
+  messages: 'messages',
+  expectedDate: 'expectedDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PaymentInfoScalarFieldEnum = {
+  id: 'id',
+  paymentMethod: 'paymentMethod',
+  total_paid: 'total_paid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ReviewScalarFieldEnum = {
@@ -209,6 +248,9 @@ exports.Prisma.ModelName = {
   Address: 'Address',
   Admin: 'Admin',
   Product: 'Product',
+  Order: 'Order',
+  DeliveryInfo: 'DeliveryInfo',
+  PaymentInfo: 'PaymentInfo',
   Review: 'Review',
   Category: 'Category'
 };
